@@ -25,7 +25,7 @@ const __dirname = dirname(__filename);
 
 //------------SETEO DE SERVER----------
 const app= express(); 
-const httpServer = new HttpServer(app) 
+const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
 //--------------ROUTER PARA NUMEROS ALEATORIOS-----------
@@ -49,7 +49,9 @@ app.use(session({
   cookie:{
     httpOnly:false,
     secure:false,
-    //maxAge: 60000 * 10 // 10 MINUTOS
+    
+  //maxAge: 60000 * 10 // 10 MINUTOS
+
   },  
   rolling:true,
   resave:true,
@@ -127,7 +129,7 @@ passport.use('logueo', new LocalStrategy( async (username,password,done)=>{
   return done(null, user)
 })) 
 
-//---------------MIDDLEWARE DE AUTENTICACION y deMULTER PARA GUARDAR IMAGENES--------------------  
+//---------------MIDDLEWARE DE AUTENTICACION y de MULTER PARA GUARDAR IMAGENES--------------------  
 function auth(req, res, next){
   if (req.isAuthenticated()) {
     console.log('USUARIO AUTENTICADO') 
@@ -140,7 +142,7 @@ function auth(req, res, next){
 let avatar = multer.diskStorage({
   destination:(req,file,cb)=>{
     console.log('carpeta multer diskStorage')
-    cb(null, 'views/avatares')
+    cb(null, './views/avatares')
   },
   filename:(req,file,cb)=>{
     cb(null,`${Date.now()}-${file.originalname}`)
@@ -286,7 +288,7 @@ const errorRuta= {error: -2, descripcion: `ruta no implementada`}
 
 app.all('*', logueoWarning,(req,res)=>{
   res.json(errorRuta)
-  })
+})
 
 //---------------SERVER LISTEN------------------------------
 
