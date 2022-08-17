@@ -18,6 +18,11 @@ import compression from 'compression';
 import {logueoWarning,logueoInfo, logueoError}from './confWinston.js';
 import {PORT,arg} from './configEntorno.js'
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 //------------SETEO DE SERVER----------
 const app= express(); 
 const httpServer = new HttpServer(app) 
@@ -135,7 +140,7 @@ function auth(req, res, next){
 let avatar = multer.diskStorage({
   destination:(req,file,cb)=>{
     console.log('carpeta multer diskStorage')
-    cb(null,'views/avatares')
+    cb(null, __dirname  + '/views/avatares')
   },
   filename:(req,file,cb)=>{
     cb(null,`${Date.now()}-${file.originalname}`)
