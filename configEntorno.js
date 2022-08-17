@@ -14,5 +14,6 @@ const HOST_MONGO = process.env.HOST_MONGO
 const PORT_MONGO = process.env.PORT_MONGO
 const PORT = process.env.PORT||arg.port
 const NODE_ENV = process.env.NODE_ENV
+const MONGO_ATLAS = process.env.MONGO_ATLAS
 
-export {PERSISTENCIA, PORT_MONGO, HOST_MONGO, PORT, NODE_ENV}
+export {PERSISTENCIA, PORT_MONGO, HOST_MONGO, PORT, NODE_ENV,MONGO_ATLAS}

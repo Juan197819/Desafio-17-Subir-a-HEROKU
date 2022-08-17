@@ -1,12 +1,12 @@
 {
   "type": "module",
-  "name": "desafio-16-logs-debug-y-profiling",
+  "name": "desafio-17-subir-a-heroku",
   "version": "1.0.0",
   "description": "",
   "main": "servidorHBS.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon servidorHBS.js"
+    "start": "node servidorHBS.js"
   },
   "keywords": [],
   "author": "",

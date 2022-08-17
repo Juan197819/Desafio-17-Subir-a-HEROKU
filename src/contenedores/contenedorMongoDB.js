@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import {HOST_MONGO, PORT_MONGO, NODE_ENV} from '../../configEntorno.js'
+import {HOST_MONGO, PORT_MONGO, NODE_ENV, MONGO_ATLAS} from '../../configEntorno.js'
 import {logueoError}from '../../confWinston.js';
 
 class ContenedorMongoDb{
@@ -14,7 +14,7 @@ class ContenedorMongoDb{
                 url = `mongodb://${HOST_MONGO}:${PORT_MONGO}/ecommerce` 
                 console.log('Mongo conectado local')
             }else{
-                url = `mongodb+srv://Juan1978:Juan1978@cluster0.gwdrp.mongodb.net/?retryWrites=true&w=majority` 
+                url = `${MONGO_ATLAS}` 
                 console.log('Mongo ATLAS conectado')
             }
             await mongoose.connect(url)
