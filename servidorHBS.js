@@ -134,6 +134,7 @@ function auth(req, res, next){
 }
 let avatar = multer.diskStorage({
   destination:(req,file,cb)=>{
+    console.log('carpeta multer diskStorage')
     cb(null,'./views/avatares')
   },
   filename:(req,file,cb)=>{
