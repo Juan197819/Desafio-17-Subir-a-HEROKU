@@ -19,6 +19,7 @@
                                 <a href="">Perfil</a>
                         </li>
                         <li>
+                                {{!-- <div id="borrarElemento2" class="flexCol"> --}}
                                 <a href="/api/productos-test">Ir a Tabla de productos aleatoria</a>
                         </li>
                         <li>
@@ -37,29 +38,29 @@
                         <h2>Centro de Mensajes</h2>
                         <h2 id="compresion"></h2>
 
-                        <form class="flexCol flexContent form" onSubmit='return agregarMensaje(this)'>
-                                <div class="flexCol flexContent positionRelative">
-                                    <label for="email">Email</label>
-                                    <input id='email' type="email" required name="email" placeholder="abcd@gmail.com">
+                        <form class="flexCol contentCenter form" onSubmit='return agregarMensaje(this)'>
+                             
+                                <label for="email">Email</label>
+                                <input id='email' type="email" required name="email" placeholder="abcd@gmail.com">
 
-                                    <label for="nombre">Nombre</label>
-                                    <input id='nombre' type="text" required name="nombre" placeholder="Juan">
+                                <label for="nombre">Nombre</label>
+                                <input id='nombre' type="text" required name="nombre" placeholder="Juan">
 
-                                    <label for="apellido">Apellido</label>
-                                    <input id='apellido' type="text" required name="apellido" placeholder="Perez">
+                                <label for="apellido">Apellido</label>
+                                <input id='apellido' type="text" required name="apellido" placeholder="Perez">
 
-                                    <label for="edad">Edad</label>
-                                    <input id='edad' type="number" required name="edad" placeholder="34">
+                                <label for="edad">Edad</label>
+                                <input id='edad' type="number" required name="edad" placeholder="34">
 
-                                    <label for="alias">Alias</label>
-                                    <input id='alias' type="text" required name="alias" placeholder="Juanito">
+                                <label for="alias">Alias</label>
+                                <input id='alias' type="text" required name="alias" placeholder="Juanito">
 
-                                    <label for="avatar">Avatar</label>
-                                    <input id='avatar' type="text" value="./avatares/{{{urlImagen}}}" required name="avatar" placeholder="Perez">
-                                </div>
+                                <label for="avatar">Avatar</label>
+                                <input id='avatar' type="text" value="./avatares/{{{urlImagen}}}" required name="avatar" placeholder="Perez">
 
-                                <div class="flexCol" id='conversacion'></div>
+                                <div id='conversacion'></div>
                                 <label for="mensaje">Mensaje</label>
+
                                 <div class="flexRow">
                                         <input id='mensaje' type="text" placeholder="Escriba aquí su mensaje" name="mensaje">        
                                         <button>Enviar</button>

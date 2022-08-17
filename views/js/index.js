@@ -57,7 +57,7 @@ const renderMensajes= (mensajesNormalizados)=>{
     document.getElementById('compresion').innerHTML= `Compresion: ${compresion}%`;
   }
   const mensajeNuevo = data.map((dato) => { 
-      return (`<p><span class="estiloMail">${dato.author.id}</span> - <span class="estiloFecha">${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}</span> - <span class="estiloMensaje">${dato.text}</span><img class="avatar" src="${dato.author.avatar}" alt="avatar"></p>`);
+      return (`<p class="dialogo"><span class="estiloMail">${dato.author.id}</span> - <span class="estiloFecha">${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}</span> - <span class="estiloMensaje">${dato.text}</span><img class="avatar" src="${dato.author.avatar}" alt="avatar"></p>`);
     }).join(" ");
     
   document.getElementById('conversacion').innerHTML= mensajeNuevo;
