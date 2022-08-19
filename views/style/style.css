@@ -246,3 +246,18 @@ a{
 .medio{
     padding: 10px 30px
 }
+
+label{
+    margin-bottom: 0;
+}
+.centro{
+    display: flex;
+    align-items: center;
+}
+.inicio{
+    align-items: flex-start;
+}
+.inicio input{
+    width: 100%;
+    margin-right: 30px!important;
+}

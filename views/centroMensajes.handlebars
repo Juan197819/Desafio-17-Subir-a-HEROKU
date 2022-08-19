@@ -1,7 +1,7 @@
 <header class="flexRow flexContent" >
         <img class="avatarFoto" src="./avatares/{{{urlImagen}}}" alt="AVATAR">
         <div class="flexCol divTitulo">
-                <h2 class="ingreso"><span class="ingreso" id="saludo">Bienvenido/a </span>{{nombre}}</h2>
+                <h2 class="ingreso"><span class="ingreso" id="saludo">Bienvenido/a </span>{{nombre}} {{{apellido}}}</h2>
                 <h3 id="borrarElemento1"><span class="ingresoMail">MAIL: {{{email}}}</span></h3>
         </div>
         <a class="btnLogout" href="logout" id="boton" onclick="mostrarSaludo()">Desloguearse</a>
@@ -19,7 +19,6 @@
                                 <a href="">Perfil</a>
                         </li>
                         <li>
-                                {{!-- <div id="borrarElemento2" class="flexCol"> --}}
                                 <a href="/api/productos-test">Ir a Tabla de productos aleatoria</a>
                         </li>
                         <li>
@@ -37,35 +36,36 @@
                 <div class="mensajes flexCol">
                         <h2>Centro de Mensajes</h2>
                         <h2 id="compresion"></h2>
+                        <div class="centro">
+                                <form class="flexCol contentCenter inicio form" onSubmit='return agregarMensaje(this)'>
+                                
+                                        <label for="email">Email</label>
+                                        <input id='email' type="email" required name="email" placeholder="abcd@gmail.com" value="{{{email}}}">
 
-                        <form class="flexCol contentCenter form" onSubmit='return agregarMensaje(this)'>
-                             
-                                <label for="email">Email</label>
-                                <input id='email' type="email" required name="email" placeholder="abcd@gmail.com">
+                                        <label for="nombre">Nombre</label>
+                                        <input id='nombre' type="text" required name="nombre" placeholder="Juan" value="{{{nombre}}}">
 
-                                <label for="nombre">Nombre</label>
-                                <input id='nombre' type="text" required name="nombre" placeholder="Juan">
+                                        <label for="apellido">Apellido</label>
+                                        <input id='apellido' type="text" required name="apellido" placeholder="Perez" value="{{{apellido}}}">
 
-                                <label for="apellido">Apellido</label>
-                                <input id='apellido' type="text" required name="apellido" placeholder="Perez">
+                                        <label for="edad">Edad</label>
+                                        <input id='edad' type="number" required name="edad" placeholder="34" value="{{{edad}}}">
 
-                                <label for="edad">Edad</label>
-                                <input id='edad' type="number" required name="edad" placeholder="34">
+                                        <label for="alias">Alias</label>
+                                        <input id='alias' type="text" required name="alias" placeholder="Juanito" value="Alias">
 
-                                <label for="alias">Alias</label>
-                                <input id='alias' type="text" required name="alias" placeholder="Juanito">
+                                        <label for="avatar">Avatar</label>
+                                        <input id='avatar' type="text" value="./avatares/{{{urlImagen}}}" required name="avatar" placeholder="Perez">
 
-                                <label for="avatar">Avatar</label>
-                                <input id='avatar' type="text" value="./avatares/{{{urlImagen}}}" required name="avatar" placeholder="Perez">
+                        </div>
+                                        <div id='conversacion'></div>
+                                        <label for="mensaje">Mensaje</label>
 
-                                <div id='conversacion'></div>
-                                <label for="mensaje">Mensaje</label>
-
-                                <div class="flexRow">
-                                        <input id='mensaje' type="text" placeholder="Escriba aquí su mensaje" name="mensaje">        
-                                        <button>Enviar</button>
-                                </div>
-                        </form>
+                                        <div class="flexRow">
+                                                <input id='mensaje' type="text" placeholder="Escriba aquí su mensaje" name="mensaje" value="Mensaje de prueba">        
+                                                <button>Enviar</button>
+                                        </div>
+                                </form>
                 </div>
         </div>
 </main>

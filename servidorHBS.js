@@ -18,14 +18,9 @@ import compression from 'compression';
 import {logueoWarning,logueoInfo, logueoError}from './confWinston.js';
 import {PORT,arg} from './configEntorno.js'
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 //------------SETEO DE SERVER----------
 const app= express(); 
-const httpServer = new HttpServer(app)
+const httpServer = new HttpServer(app) 
 const io = new IOServer(httpServer)
 
 //--------------ROUTER PARA NUMEROS ALEATORIOS-----------
@@ -49,9 +44,7 @@ app.use(session({
   cookie:{
     httpOnly:false,
     secure:false,
-    
-  //maxAge: 60000 * 10 // 10 MINUTOS
-
+    //maxAge: 60000 * 10 // 10 MINUTOS
   },  
   rolling:true,
   resave:true,
@@ -92,14 +85,14 @@ passport.use('registro', new LocalStrategy({
   
   const usuarioNuevo= {
     nombre:req.body.nombre,
-    edad:req.body.edad,
+    apellido:req.body.apellido,
     direccion:req.body.direccion,
-    telefono: req.body.phone,
+    edad:req.body.edad,
     urlImagen:req.file.filename,
+    telefono: req.body.phone,
     username: username,
     password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
   }
-  console.log(usuarioNuevo)
   try {
    await daoUsuario.guardar(usuarioNuevo)
    console.log('REGISTRO EXITOSO')
@@ -141,8 +134,7 @@ function auth(req, res, next){
 }
 let avatar = multer.diskStorage({
   destination:(req,file,cb)=>{
-    console.log('carpeta multer diskStorage')
-    cb(null, './views/avatares')
+    cb(null,'./views/avatares')
   },
   filename:(req,file,cb)=>{
     cb(null,`${Date.now()}-${file.originalname}`)
@@ -163,6 +155,9 @@ app.post('/register', upload.single('imagen'), passportAuthRegister,logueoInfo, 
   const nombreMayus= req.body.nombre.toUpperCase()
   req.session.nombre= nombreMayus
   req.session.urlImagen=req.file.filename
+  req.session.edad=req.body.edad
+  req.session.apellido= req.body.apellido
+
   res.redirect('/centroMensajes')
 })  
 
@@ -183,11 +178,12 @@ app.get('/login', logueoInfo, (req, res) => {
 
 app.post('/login', passportAuthLogin, logueoInfo, async (req, res) => {
 
-  const [{nombre,urlImagen}]= await daoUsuario.leer({username: req.body.username})
-  console.log(nombre)
+  const [{nombre,urlImagen,edad,apellido}]= await daoUsuario.leer({username: req.body.username})
   const nombreMayus= nombre.toUpperCase()
   req.session.nombre= nombreMayus
   req.session.urlImagen= urlImagen
+  req.session.edad= edad
+  req.session.apellido= apellido.toUpperCase()
   res.redirect('/centroMensajes')
 })
 
@@ -212,11 +208,11 @@ app.get('/logout',auth, logueoInfo,(req, res) => {
 //-------------CENTRO DE MENSAJES-- (PAGINA PRINCIPAL) -----------
 
 app.get('/centroMensajes', auth , logueoInfo,(req, res) => {
-  console.log(req.session.urlImagen)
   const usuario = {
     nombre:req.session.nombre,
     urlImagen:req.session.urlImagen,
-
+    edad:req.session.edad,
+    apellido:req.session.apellido,
     email:req.user,
   }
   res.render("centroMensajes",usuario);
@@ -237,7 +233,6 @@ const info ={
 
 app.get('/info', logueoInfo, (req, res) => {
   info.compIsTrue = 'No Comprimida'
-  //console.log(info) 
   res.render("info",info)
 })
 app.get('/infoComp', compression(), logueoInfo, (req, res) => {
@@ -288,7 +283,7 @@ const errorRuta= {error: -2, descripcion: `ruta no implementada`}
 
 app.all('*', logueoWarning,(req,res)=>{
   res.json(errorRuta)
-})
+  })
 
 //---------------SERVER LISTEN------------------------------
 
@@ -325,5 +320,4 @@ if (!arg.CLUSTER&&!arg.cluster) {
     );
   } 
 } 
-             
-console.log(arg) 
+            

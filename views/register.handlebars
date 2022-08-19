@@ -1,10 +1,13 @@
 <div class="flexCol contentCenter">
-  <div class="usuario flexCol contentCenter">
-    <h1>Ingrese sus datos para crear la cuenta</h1>
+  <div class="usuario H1Register  flexCol contentCenter">
+    <h1 class="H1Register">Ingrese sus datos para crear la cuenta</h1>
     <form  class="flexCol" action="/register" enctype="multipart/form-data" method="POST"/>
 
-      <label for="nombre">Nombre y Apellido</label>
-      <input type="text" required name="nombre" value="Juan Perez"/>
+      <label for="nombre">Nombre</label>
+      <input type="text" required name="nombre" value="Juan"/>
+
+      <label for="apellido">Apellido</label>
+      <input type="text" required name="apellido" value="Perez"/>
 
       <label for="direccion">Direccion</label>
       <input type="text" required name="direccion" value="Chubut 500"/>
